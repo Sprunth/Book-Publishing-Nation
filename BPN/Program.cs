@@ -30,18 +30,15 @@ namespace BPN
         private static Gwen.Font guiFontLarge;
         public static Gwen.Font GuiFontLarge { get { return guiFontLarge; } }
         private static Gwen.Input.SFML input;
-        private static TabControl tab;
-        public static TabControl Tab { get { return tab; } }
-        private static Canvas bookPage;
-        public static Canvas BookPage { get { return bookPage; } }
-        private static Canvas aboutPage;
-        public static Canvas AboutPage { get { return aboutPage; } }
-        private static TabButton bookTabButton;
-        public static TabButton BookTabButton { get { return bookTabButton; } }
-        private static TabButton aboutTabButton;
-        public static TabButton AboutTabButton { get { return aboutTabButton; } }
+        private static Button bookPageButton;
+        public static Button BookPageButton { get { return bookPageButton; } }
+        private static Button aboutPageButton;
+        public static Button AboutPageButton { get { return aboutPageButton; } }
 
+        private static Button activePageButton;
+        public static Button ActivePageButton { get { return activePageButton; } }
 
+        private static System.Drawing.Rectangle smallPageBounds;
 
         private static int thisFrameFps =0, lastFrameFps=0;
 
@@ -58,7 +55,6 @@ namespace BPN
                 window.DispatchEvents();
                 Update();
                 Draw();
-                
             }
 
             window_Closed(null, new EventArgs());
@@ -77,7 +73,6 @@ namespace BPN
             Book.Update();
 
             GameManager.Update();
-
         }
 
         private static void Draw()
@@ -105,12 +100,13 @@ namespace BPN
 
             #region window setup
             window = new RenderWindow(new VideoMode((uint)screenSize.X, (uint)screenSize.Y, 32), "BPN", Styles.Close);
-            window.SetFramerateLimit(30); 
+            window.SetFramerateLimit(30);
             window.KeyReleased += new EventHandler<KeyEventArgs>(window_KeyReleased);
             window.Closed += new EventHandler(window_Closed);
             window.MouseButtonReleased += new EventHandler<MouseButtonEventArgs>(window_MouseButtonReleased);
             window.MouseMoved += new EventHandler<MouseMoveEventArgs>(window_MouseMoved);
             window.MouseButtonPressed += new EventHandler<MouseButtonEventArgs>(window_MouseButtonPressed);
+            window.MouseWheelMoved += new EventHandler<MouseWheelEventArgs>(window_MouseWheelMoved);
             window.EnableVerticalSync(true);
             #endregion
 
@@ -130,46 +126,32 @@ namespace BPN
             _canvas.BackgroundColor = System.Drawing.Color.FromArgb(255, 150, 170, 170);
             _canvas.KeyboardInputEnabled = true;
 
-            #region book page
-            bookPage = new Canvas(skin);
-            bookPage.SetBounds(4, 4, screenSize.X - 8, screenSize.Y - 8);
-            bookPage.MouseInputEnabled = true;
-            
-            bookTabButton = new TabButton(_canvas);
-            bookTabButton.SetBounds(4, 4, bookTabButton.Parent.Width-4,bookTabButton.Parent.Height-4);
-            bookTabButton.Text = "Books";
-            bookTabButton.Page = bookPage;
-            bookTabButton.Font = guiFontLarge;
-            bookTabButton.MouseInputEnabled = true;
-            bookTabButton.IsTabable = false;
-            
-            #endregion
-
-            #region about page
-            aboutPage = new Canvas(skin);
-            aboutPage.SetBounds(4, 4, screenSize.X-8, screenSize.Y-8);
-            aboutTabButton = new TabButton(_canvas);
-            aboutTabButton.SetBounds(4, 4, aboutTabButton.Parent.Width - 4, aboutTabButton.Parent.Height - 4);
-            aboutTabButton.Text = "About BPN";
-            aboutTabButton.Page = aboutPage;
-            aboutTabButton.Font = guiFontLarge;
-            #endregion
-
-            tab = new TabControl(_canvas);
-            tab.SetBounds(0, 24, screenSize.X, screenSize.Y-54);
-            tab.AddPage(bookTabButton);
-            tab.AddPage(aboutTabButton);
-            tab.MouseInputEnabled = true;
-
             input = new Gwen.Input.SFML();
             input.Initialize(_canvas);
             #endregion
+
+            #region Side Buttons
+            aboutPageButton = new Button(_canvas);
+            aboutPageButton.Text = "About";
+            aboutPageButton.SetPos(4, screenSize.Y-96);
+            aboutPageButton.OnDown += new Gwen.Controls.Base.ControlCallback(aboutPageButton_OnDown);
+
+            bookPageButton = new Button(_canvas);
+            bookPageButton.Text = "Books";
+            bookPageButton.SetPos(4, 32);
+            bookPageButton.OnDown += new Gwen.Controls.Base.ControlCallback(bookPageButton_OnDown);
+
+            activePageButton = bookPageButton;
+            #endregion
+
+            int leftBound = 80;
+            smallPageBounds = new System.Drawing.Rectangle(leftBound,leftBound,screenSize.X-leftBound*2,screenSize.Y -leftBound*2);
 
             #region Name Generator Initialization
             BookNameGenerator.Initialize();
             PersonNameGenerator.Initialize();
             //Have a few books ready for review at beginning of the game
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 8; i++)
             { Book b = new Book(); }
             #endregion
 
@@ -182,9 +164,24 @@ namespace BPN
             Debug.WriteLine("Initialization Complete");
         }
 
+        static void bookPageButton_OnDown(Gwen.Controls.Base control)
+        {
+            GameManager.ChangePage(GameManager.Page.Books);
+        }
+
+        static void aboutPageButton_OnDown(Gwen.Controls.Base control)
+        {
+            GameManager.ChangePage(GameManager.Page.About);
+        }
+
         public static void Exit()
         {
             window_Closed(null, null);
+        }
+
+        static void window_MouseWheelMoved(object sender, MouseWheelEventArgs e)
+        {
+            input.ProcessMessage(e);
         }
 
         static void window_MouseButtonReleased(object sender, MouseButtonEventArgs e)

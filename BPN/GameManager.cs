@@ -15,11 +15,11 @@ namespace BPN
         public static void NextDay() { gameTime = gameTime.AddDays(1); }
 
         private static int frameCounter = 0;
-        private static int counterMax = 60;
+        private static int counterMax = 30;
         public enum GameSpeeds {Paused,Normal,Fast};
         private static GameSpeeds gameSpeed = GameSpeeds.Normal;
-        public static GameSpeeds GameSpeed 
-        { 
+        public static GameSpeeds GameSpeed
+        {
             get {return gameSpeed;}
             set 
             {
@@ -27,8 +27,8 @@ namespace BPN
                 switch (gameSpeed)
                 {
                     case GameSpeeds.Paused: { break; }
-                    case GameSpeeds.Normal: { counterMax = 60; break; }
-                    case GameSpeeds.Fast: { counterMax = 30; break; }
+                    case GameSpeeds.Normal: { counterMax = 30; break; }
+                    case GameSpeeds.Fast: { counterMax = 15; break; }
                 }
             }
         }
@@ -45,6 +45,13 @@ namespace BPN
         public static Gwen.Controls.MenuStrip MenuStrip { get { return menuStrip; } }
         public static List<Gwen.Controls.MenuItem> menuStripItems = new List<Gwen.Controls.MenuItem>();
         private static Gwen.Controls.MenuItem exitButton;
+
+        private static List<Gwen.Controls.Base> bookPageItems = new List<Gwen.Controls.Base>();
+        public static List<Gwen.Controls.Base> BookPageItems { get { return bookPageItems; } }
+        private static List<Gwen.Controls.Base> aboutPageItems = new List<Gwen.Controls.Base>();
+        public static List<Gwen.Controls.Base> AboutPageItems { get { return aboutPageItems; } }
+
+        public enum Page { About, Books };
 
         public static void Initialize()
         {
@@ -66,16 +73,18 @@ namespace BPN
             pausedText.SetPos(P.ScreenSize.X - pausedText.Length * P.GuiFont.Size, P.ScreenSize.Y - 20);
             pausedText.Hide();
 
-            aboutText = new Gwen.ControlsInternal.Text(P.AboutPage);
+            aboutText = new Gwen.ControlsInternal.Text(P._Canvas);
             aboutText.String = "Book Publishing Nation was created by Dylan Wang";
             aboutText.SetPos(aboutText.Parent.Width / 2, aboutText.Parent.Height / 2);
+            aboutText.Hide();
+
+            aboutPageItems.Add(aboutText);
         }
 
         static void exitButton_OnDown(Gwen.Controls.Base control)
         {
             Environment.Exit(0);
         }
-
 
         public static void Update()
         {
@@ -88,6 +97,37 @@ namespace BPN
                     gameTimeText.String = GameTimeString;
                     frameCounter = 0;
                 }
+            }
+        }
+
+        public static void ChangePage(Page theActivePage)
+        {
+            switch (theActivePage)
+            {
+                case Page.About: 
+                    {
+                        foreach (Gwen.Controls.Base b in GameManager.bookPageItems)
+                        {
+                            b.Hide();
+                        }
+                        foreach (Gwen.Controls.Base b in GameManager.aboutPageItems)
+                        {
+                            b.Show();
+                        }
+                        break;
+                    }
+                case Page.Books: 
+                    {
+                        foreach (Gwen.Controls.Base b in GameManager.bookPageItems)
+                        {
+                            b.Show();
+                        }
+                        foreach (Gwen.Controls.Base b in GameManager.aboutPageItems)
+                        {
+                            b.Hide();
+                        }
+                        break;
+                    }
             }
         }
 

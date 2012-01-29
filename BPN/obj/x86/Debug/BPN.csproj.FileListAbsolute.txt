@@ -25,8 +25,6 @@ C:\Users\Dylan\Documents\Visual Studio 2010\Projects\PolyTowerGon\PolyTowerGon\b
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\PolyTowerGon\PolyTowerGon\bin\Debug\Data\PersonNames\lastname.txt
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\PolyTowerGon\PolyTowerGon\bin\Debug\Data\PersonNames\male.txt
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\PolyTowerGon\PolyTowerGon\bin\Debug\Data\VISITOR2.TTF
-C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\PolyTowerGon.exe
-C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\PolyTowerGon.pdb
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\csfml-audio-2.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\csfml-graphics-2.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\csfml-window-2.dll
@@ -43,8 +41,6 @@ C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\ope
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\OpenTK.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\Data\OpenSans.ttf
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\Data\VISITOR2.TTF
-C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\PolyTowerGon.exe
-C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\PolyTowerGon.pdb
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\Gwen.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\Gwen.Renderer.SFML.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\sfmlnet-audio-2.dll
@@ -52,3 +48,7 @@ C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\sfm
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\sfmlnet-window-2.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\Tao.OpenGl.dll
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\BPN.exe
+C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\BPN.pdb
+C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\BPN.exe
+C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\BPN.pdb
