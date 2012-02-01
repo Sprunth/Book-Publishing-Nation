@@ -171,6 +171,7 @@ namespace BPN
                     { publishingProgress.Value = activeBook.progress; }
                 }
 
+                #region chaning Book states
                 if (b.framesPast >= b.framesTillStatusChange)
                 {
                     switch (b.status)
@@ -179,7 +180,10 @@ namespace BPN
                             {
                                 b.status = BookStatus.Denied;
                                 toArchive.Add(b);
-                                Notifications.AddNotification(b.title + "has exceeded its waiting period and has been automatically denied.");
+
+                                DeleteBookFromMenu(b);
+
+                                Notifications.AddNotification(b.title + " has exceeded its waiting period and has been automatically denied.");
                                 break;
                             }
                         case BookStatus.Approved:
@@ -199,41 +203,68 @@ namespace BPN
                             }
                     }
                 }
+                #endregion
             }
             #endregion
-
+            
             #region Handle Book Archiving
-            if (toArchive.Count > 0)
-            {
+            /*
+                List<int> indexesToDelete = new List<int>();
+
                 //archieves denied and retired books
                 foreach (Book b in toArchive)
                 {
                     activeBooks.Remove(b);
                     archivedBooks.Add(b);
+
+                    for (int i = 0; i < activeBookItems.Count; i++)
+                    {
+                        if (activeBookItems[i].Text == b.title)
+                        {
+                            indexesToDelete.Add(i);
+                        }
+                    }
+                }
+                int removedCount = 0;
+                foreach (int g in indexesToDelete)
+                {
+                    menu.RemoveRow(g);
+                    removedCount++;
                 }
 
-                
-
                 toArchive.Clear();
-                RefreshMenu();
-            }
+            */
             #endregion
+
+            //need to remove from ActiveBooks
+            foreach (Book d in toArchive)
+            { activeBooks.Remove(d); }
 
         }
         #endregion
 
-        public static void RefreshMenu()
+        private static void DeleteBookFromMenu(Book b)
         {
-            menu.RemoveAll();
-            foreach (Book b in activeBooks)
-            { menu.AddItem(b.title); }
-        }
+            int indexToDelete = -1;
 
-        public static bool checkEqual(string name1, string name2)
-        {
-            if (name1 == name2)
-            { return true; }
-            else { return false; }
+            //archieves denied and retired books
+            archivedBooks.Add(b);
+
+            for (int i = 0; i < activeBookItems.Count; i++)
+            {
+                if (activeBookItems[i].Text == b.title)
+                {
+                    indexToDelete = i;
+                }
+            }
+
+            try
+            {
+                menu.RemoveRow(indexToDelete);
+            }
+            catch (Exception e)
+            { Debug.WriteLine(":O " + e); }
+
         }
 
         private BookStatus status;
