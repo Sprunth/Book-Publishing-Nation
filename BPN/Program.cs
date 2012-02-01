@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML.Audio;
 using SFML.Graphics;
@@ -18,8 +17,10 @@ namespace BPN
     class Program
     {
         private static RenderWindow window;
-        private static Vector2i screenSize = new Vector2i(600, 400);
+        private static Vector2i screenSize = new Vector2i(512, 400);
         public static Vector2i ScreenSize { get { return screenSize; } }
+        private static Random randomizer = new Random();
+        public static Random Randomizer { get { return randomizer; } }
 
         private static Canvas _canvas;
         public static Canvas _Canvas { get { return _canvas; } }
@@ -133,7 +134,7 @@ namespace BPN
             #region Side Buttons
             aboutPageButton = new Button(_canvas);
             aboutPageButton.Text = "About";
-            aboutPageButton.SetPos(4, screenSize.Y-96);
+            aboutPageButton.SetPos(4, 2*screenSize.Y/3-8);
             aboutPageButton.OnDown += new Gwen.Controls.Base.ControlCallback(aboutPageButton_OnDown);
 
             bookPageButton = new Button(_canvas);
@@ -158,6 +159,8 @@ namespace BPN
             GameManager.Initialize();
 
             guiRenderer.Initialize();
+
+            Notifications.Initialize();
 
             Book.Initialize();
 

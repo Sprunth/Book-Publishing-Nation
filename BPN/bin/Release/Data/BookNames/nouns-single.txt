@@ -34,7 +34,7 @@ Dreaming
 Dreams
 Dying
 Edge
-Edge};
+Edge
 Elf
 Emerald
 Emperor

@@ -11,10 +11,12 @@ namespace BPN
     class GameManager
     {
         private static DateTime gameTime;
+        public static DateTime GameTime { get { return gameTime; } }
         public static String GameTimeString { get { return "Year " + gameTime.Year + " Month " + gameTime.Month + " Day " + gameTime.Day; } }
         public static void NextDay() { gameTime = gameTime.AddDays(1); }
 
         private static int frameCounter = 0;
+        public static int FrameCounter { get { return frameCounter; } }
         private static int counterMax = 30;
         public enum GameSpeeds {Paused,Normal,Fast};
         private static GameSpeeds gameSpeed = GameSpeeds.Normal;
@@ -38,6 +40,8 @@ namespace BPN
         private static Gwen.ControlsInternal.Text pausedText;
         public static Gwen.ControlsInternal.Text PausedText { get { return pausedText; } }
 
+        private static Gwen.ControlsInternal.Text aboutTextTitle;
+        public static Gwen.ControlsInternal.Text AboutTextTitle { get { return aboutTextTitle; } }
         private static Gwen.ControlsInternal.Text aboutText;
         public static Gwen.ControlsInternal.Text AboutText { get { return aboutText; } }
 
@@ -73,12 +77,19 @@ namespace BPN
             pausedText.SetPos(P.ScreenSize.X - pausedText.Length * P.GuiFont.Size, P.ScreenSize.Y - 20);
             pausedText.Hide();
 
+            aboutTextTitle = new Gwen.ControlsInternal.Text(P._Canvas);
+            aboutTextTitle.String = "Book Publishing Nation";
+            aboutTextTitle.Font = P.GuiFontLarge;
+            aboutTextTitle.SetPos(128, 80);
+            aboutTextTitle.Hide();
+
             aboutText = new Gwen.ControlsInternal.Text(P._Canvas);
-            aboutText.String = "Book Publishing Nation was created by Dylan Wang";
-            aboutText.SetPos(aboutText.Parent.Width / 2, aboutText.Parent.Height / 2);
+            aboutText.String = "Created by Dylan Wang \nVersion Pre-Alpha";
+            aboutText.SetPos(128, 80+24);
             aboutText.Hide();
 
             aboutPageItems.Add(aboutText);
+            aboutPageItems.Add(aboutTextTitle);
         }
 
         static void exitButton_OnDown(Gwen.Controls.Base control)
