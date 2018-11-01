@@ -52,3 +52,29 @@ C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\BPN
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\bin\Debug\BPN.pdb
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\BPN.exe
 C:\Users\Dylan\Documents\Visual Studio 2010\Projects\BPN_SFML5\BPN\obj\x86\Debug\BPN.pdb
+C:\Programming\projects\BookPublishingNation\BPN\obj\x86\Debug\BPN.csproj.CoreCompileInputs.cache
+C:\Programming\projects\BookPublishingNation\BPN\obj\x86\Debug\BPN.exe
+C:\Programming\projects\BookPublishingNation\BPN\obj\x86\Debug\BPN.pdb
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\BookNames\adjectives.txt
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\BookNames\nouns-single.txt
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\DefaultSkin.png
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\graphics\turret_base.png
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\graphics\bullet_basic.png
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\PersonNames\female.txt
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\PersonNames\lastname.txt
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\PersonNames\male.txt
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\OpenSans.ttf
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Data\VISITOR2.TTF
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\BPN.exe
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\BPN.pdb
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-audio-2.dll
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-audio-2.pdb
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-graphics-2.dll
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-graphics-2.pdb
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-system-2.dll
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-system-2.pdb
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-window-2.dll
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\sfmlnet-window-2.pdb
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Gwen.dll
+C:\Programming\projects\BookPublishingNation\BPN\bin\Debug\Gwen.Renderer.SFML.dll
+C:\Programming\projects\BookPublishingNation\BPN\obj\x86\Debug\BPN.csproj.CopyComplete

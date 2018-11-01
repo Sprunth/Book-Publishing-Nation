@@ -10,6 +10,7 @@ using Gwen.Skin;
 using System.Diagnostics;
 using System.Timers;
 using System.Threading;
+using SFML.System;
 
 //Book Publishing Nation v0.1
 namespace BPN
@@ -40,9 +41,7 @@ namespace BPN
         public static Button ActivePageButton { get { return activePageButton; } }
 
         private static System.Drawing.Rectangle smallPageBounds;
-
-        private static int thisFrameFps =0, lastFrameFps=0;
-
+        
         static void Main(string[] args)
         {
             Initialize();
@@ -51,7 +50,7 @@ namespace BPN
 
         private static void GameLoop()
         {
-            while (window.IsOpened())
+            while (window.IsOpen)
             {
                 window.DispatchEvents();
                 Update();
@@ -63,14 +62,6 @@ namespace BPN
 
         private static void Update()
         {
-            #region Memory & FPS
-            float memory = (float)Math.Round(GC.GetTotalMemory(true) / 1024F / 1024F, 2);
-            thisFrameFps = (int)window.GetFrameTime();
-            //thisFrameFps = (int)(1 / window.GetFrameTime());
-            window.SetTitle("BPN | Memory: " + memory + "MB | FPS: " + Math.Round(thisFrameFps*0.7+lastFrameFps*0.3));
-            lastFrameFps = thisFrameFps;
-            #endregion
-
             Book.Update();
 
             GameManager.Update();
@@ -80,13 +71,13 @@ namespace BPN
         {
             //Defaults to black color
             window.Clear();
-            window.SaveGLStates();
+            window.PushGLStates();
             #region render gui
             guiRenderer.Begin();
             guiRenderer.End();
             #endregion
             _canvas.RenderCanvas();
-            window.RestoreGLStates();
+            window.PopGLStates();
             window.Display();
         }
 
@@ -107,8 +98,8 @@ namespace BPN
             window.MouseButtonReleased += new EventHandler<MouseButtonEventArgs>(window_MouseButtonReleased);
             window.MouseMoved += new EventHandler<MouseMoveEventArgs>(window_MouseMoved);
             window.MouseButtonPressed += new EventHandler<MouseButtonEventArgs>(window_MouseButtonPressed);
-            window.MouseWheelMoved += new EventHandler<MouseWheelEventArgs>(window_MouseWheelMoved);
-            window.EnableVerticalSync(true);
+            window.MouseWheelScrolled += Window_MouseWheelScrolled;
+            window.SetVerticalSyncEnabled(true);
             #endregion
 
             #region Gui Setup
@@ -167,6 +158,11 @@ namespace BPN
             Debug.WriteLine("Initialization Complete");
         }
 
+        private static void Window_MouseWheelScrolled(object sender, MouseWheelScrollEventArgs e)
+        {
+            input.ProcessMessage(e);
+        }
+
         static void bookPageButton_OnDown(Gwen.Controls.Base control)
         {
             GameManager.ChangePage(GameManager.Page.Books);
@@ -181,11 +177,7 @@ namespace BPN
         {
             window_Closed(null, null);
         }
-
-        static void window_MouseWheelMoved(object sender, MouseWheelEventArgs e)
-        {
-            input.ProcessMessage(e);
-        }
+        
 
         static void window_MouseButtonReleased(object sender, MouseButtonEventArgs e)
         {
